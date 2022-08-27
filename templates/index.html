@@ -1,0 +1,440 @@
+{% extends 'base.html' %} {% block body %}
+  <div class="site-wrap">
+
+    <div class="slide-one-item home-slider owl-carousel">
+      <div class="site-blocks-cover overlay" style="background-image: url(static/images/hero_bg_1.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+        <div class="container">
+          <div class="row align-items-center justify-content-start">
+            <div class="col-md-6 text-center text-md-left" data-aos="fade-up" data-aos-delay="400">
+              <h1 class="bg-text-line">Acima de tudo Rubro-Negro!</h1>
+              <p><a href="#" class="btn btn-primary btn-sm rounded-0 py-3 px-5">Notícias</a></p>
+            </div>
+          </div>
+        </div>
+      </div>  
+
+      <div class="site-blocks-cover overlay" style="background-image: url(static/images/hero_bg_2.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+        <div class="container">
+          <div class="row align-items-center justify-content-start">
+            <div class="col-md-6 text-center text-md-left" data-aos="fade-up" data-aos-delay="400">
+              <h1 class="bg-text-line">A Maior Torcida Brasileira em Toronto</h1>
+              <p><a href="#" class="btn btn-primary btn-sm rounded-0 py-3 px-5">Sobre Nós</a></p>
+            </div>
+          </div>
+        </div>
+      </div>       
+
+      <div class="site-blocks-cover overlay" style="background-image: url(static/images/hero_bg_3.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+        <div class="container">
+          <div class="row align-items-center justify-content-start">
+            <div class="col-md-6 text-center text-md-left" data-aos="fade-up" data-aos-delay="400">
+              <h1 class="bg-text-line">Juntos Até o fim!</h1>
+              <p><a href="#" class="btn btn-primary btn-sm rounded-0 py-3 px-5">Próximos Jogos</a></p>
+            </div>
+          </div>
+        </div>
+      </div>  
+    </div>
+    
+
+    <div class="site-section pt-0 feature-blocks-1" data-aos="fade" data-aos-delay="100">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-4" >
+            <div class="p-3 p-md-5 feature-block-1 mb-5 mb-lg-0 bg" style="background-image: url('static/images/FlaToronto.jpg');">
+              <div class="text">
+                <h2 class="h5 text-white">Próximos Encontros</h2>
+                <p>Saiba mais sobre os próximos eventos</p>
+                <p class="mb-0"><a href="#" class="btn btn-primary btn-sm px-4 py-2 rounded-0">Agenda</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="p-3 p-md-5 feature-block-1 mb-5 mb-lg-0 bg" style="background-image: url('static/images/img_2.jpg');">
+              <div class="text">
+                <h2 class="h5 text-white">Registre-se</h2>
+                <p>Ajude o Clube de Regatas do Flamengo a conhecer  o tamanho de suas Embaixadas e Consulados oficiais</p>
+                <p class="mb-0"><a href="register" class="btn btn-primary btn-sm px-4 py-2 rounded-0">Cadastrar</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="p-3 p-md-5 feature-block-1 mb-5 mb-lg-0 bg" style="background-image: url('static/images/product_01.jpg');">
+              <div class="text">
+                <h2 class="h5 text-white">Produtos</h2>
+                <p>Conheça os Produtos oficiais FlaToronto.</p>
+                <p class="mb-0"><a href="#" class="btn btn-primary btn-sm px-4 py-2 rounded-0">Conheça a Loja</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-blocks-vs site-section bg-light">
+      <div class="container">
+
+        <div class="border mb-3 rounded d-block d-lg-flex align-items-center p-3 next-match">
+          
+          <div class="mr-auto order-md-1 w-60 text-center text-lg-left mb-3 mb-lg-0">
+            Próxima Partida 
+            <div id="date-countdown"></div>
+          </div>
+
+          <div class="ml-auto pr-4 order-md-2">
+            <div class="h5 text-black text-uppercase text-center text-lg-left">
+              <span class="text-muted mx-3 text-normal mb-3 mb-lg-0 d-block d-md-inline ">{{ league_next }}</span>
+              <div class="d-block d-md-inline-block mb-3 mb-lg-0">
+                <img src="{{ home_team_logo_next }}" alt="Image" class="mr-3 image"><span class="d-block d-md-inline-block ml-0 ml-md-3 ml-lg-0">{{ home_team_next }} </span>
+              </div>
+              <span class="text-muted mx-3 text-normal mb-3 mb-lg-0 d-block d-md-inline ">vs</span> 
+              <div class="d-block d-md-inline-block">
+                <img src="{{ away_team_logo_next }}" alt="Image" class="mr-3 image"><span class="d-block d-md-inline-block ml-0 ml-md-3 ml-lg-0">{{ away_team_next }}</span>
+              </div>
+            </div>
+          </div>
+          
+          
+        </div>
+
+        <div class="bg-image overlay-success rounded mb-5" style="background-image: url('static/images/hero_bg_1.jpg');" data-stellar-background-ratio="0.5">
+          
+          <div class="row align-items-center">
+            <div class="col-md-12 col-lg-4 mb-4 mb-lg-0">
+
+              <div class="text-center text-lg-left">
+                <div class="d-block d-lg-flex align-items-center">
+                  <div class="image mx-auto mb-3 mb-lg-0 mr-lg-3">
+                    <img src="{{ home_team_logo_last }}" alt="Image" class="img-fluid">
+                  </div>
+                  <div class="text">
+                    <h3 class="h5 mb-0 text-black">{{home_team_last}}</h3>
+                    <span class="text-uppercase small country text-black">CASA</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-md-12 col-lg-4 text-center mb-4 mb-lg-0">
+              <div class="d-inline-block">
+                <p class="mb-2"><small class="text-uppercase text-black font-weight-bold">{{ league_last }}</small></p>
+                <div class="bg-black py-2 px-4 mb-2 text-white d-inline-block rounded"><span class="h3">{{ score_home_last }} : {{ score_away_last }}</span></div>
+                <p class="mb-0"><small class="text-uppercase text-black font-weight-bold"> {{ match_date_last }} / {{ match_time_last }}</small></p>
+              </div>
+            </div>
+
+            <div class="col-md-12 col-lg-4 text-center text-lg-right">
+              <div class="">
+                <div class="d-block d-lg-flex align-items-center">
+                  <div class="image mx-auto ml-lg-3 mb-3 mb-lg-0 order-2">
+                    <img src="{{ away_team_logo_last }}" alt="Image" class="img-fluid">
+                  </div>
+                  <div class="text order-1">
+                    <h3 class="h5 mb-0 text-black">{{ away_team_last }}</h3>
+                    <span class="text-uppercase small country text-black">VISITANTE</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+
+            <h2 class="h6 text-uppercase text-black font-weight-bold mb-3">ÚLTIMAS PARTIDAS</h2>            
+            <div class="site-block-tab">
+              
+              <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Resultados</a>
+                </li>
+              </ul>
+              
+              <div class="tab-content" id="pills-tabContent">
+                
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">                
+                  
+                  <div class="row align-items-center">
+                    
+                    <div class="col-md-12"> 
+                      {% for match in all_matches[0:5] %}                     
+                      <div class="row bg-white align-items-center ml-0 mr-0 py-4 match-entry">
+                        
+                        <div class="col-md-4 col-lg-4 mb-4 mb-lg-0">
+                          <div class="text-center text-lg-left">
+                            <div class="d-block d-lg-flex align-items-center">
+                              <div class="image image-small text-center mb-3 mb-lg-0 mr-lg-3">
+                                <img src="{{ match['home_team_logo'] }}" alt="Image" class="img-fluid">
+                              </div>
+                              <div class="text">
+                                <h3 class="h5 mb-0 text-black">{{ match["home_team"] }}</h3>
+                                <span class="text-uppercase small country">Brazil</span>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class="col-md-4 col-lg-4 text-center mb-4 mb-lg-0">
+                          <div class="d-inline-block">
+                            <p class="mb-2"><small class="text-uppercase text-black font-weight-bold">{{ match["league"] }}</small></p>                  
+                            <div class="bg-black py-2 px-4 mb-2 text-white d-inline-block rounded"><span class="h5">{{ match["score"]["home"] }}:{{ match["score"]["away"] }}</span></div>
+                            <p class="mb-2"><small class="text-uppercase text-black font-weight-bold">{{ match["stadium"] }}</small></p>                          
+                          </div>
+                        </div>
+
+                        <div class="col-md-4 col-lg-4 text-center text-lg-right">
+                          <div class="">
+                            <div class="d-block d-lg-flex align-items-center">
+                              <div class="image image-small ml-lg-3 mb-3 mb-lg-0 order-2">
+                                <img src="{{ match['away_team_logo'] }}" alt="Image" class="img-fluid">
+                              </div>
+                              <div class="text order-1 w-100">
+                                <h3 class="h5 mb-0 text-black">{{ match["away_team"] }}</h3>
+                                <span class="text-uppercase small country">London</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {% endfor %}
+                      
+                      <!-- END row -->
+
+                    </div>
+                  </div>
+                </div>
+                             
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="site-section block-13 bg-primary fixed overlay-primary bg-image" style="background-image: url('static/images/hero_bg_3.jpg');"  data-stellar-background-ratio="0.5">
+
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md-12 text-center">
+            <h2 class="text-white">Alguns Produtos</h2>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="nonloop-block-13 owl-carousel">
+        <div class="item">
+          <!-- uses .block-12 -->
+          <div class="block-12">
+            <figure>
+              <img src="static/images/product_01.jpg" alt="Image" class="img-fluid">
+            </figure>
+            <div class="text">
+              <span class="meta">UNISEX</span>
+              <div class="text-inner">
+                <h2 class="heading mb-3"><a href="#" class="text-black">$25.35</a></h2>
+                <p>Camisa UNISEX logo FlaToronto</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="block-12">
+            <figure>
+              <img src="static/images/product_02.jpg" alt="Image" class="img-fluid">
+            </figure>
+            <div class="text">
+              <span class="meta">UNISEX</span>
+              <div class="text-inner">
+                <h2 class="heading mb-3"><a href="#" class="text-black">$60.00</a></h2>
+                <p>Casaco de zíper, com gorro.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="item">
+          <div class="block-12">
+            <figure>
+              <img src="static/images/product_03.jpg" alt="Image" class="img-fluid">
+            </figure>
+            <div class="text">
+              <span class="meta">UNISEX</span>
+              <div class="text-inner">
+                <h2 class="heading mb-3"><a href="#" class="text-black">$60.00</a></h2>
+                <p>Casaco de zíper, sem gorro.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="block-12">
+            <figure>
+              <img src="static/images/product_04.jpg" alt="Image" class="img-fluid">
+            </figure>
+            <div class="text">
+              <span class="meta">UNISEX</span>
+              <div class="text-inner">
+                <h2 class="heading mb-3"><a href="#" class="text-black">$30.25</a></h2>
+                <p>CAMISA PRETA - UNISEX</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <!-- uses .block-12 -->
+          <div class="block-12">
+            <figure>
+              <img src="static/images/img_1.jpg" alt="Image" class="img-fluid">
+            </figure>
+            <div class="text">
+              <span class="meta">May 20th 2018</span>
+              <div class="text-inner">
+                <h2 class="heading mb-3"><a href="#" class="text-black">World Cup Championship</a></h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad culpa, consectetur! Eligendi illo, repellat repudiandae cumque fugiat optio!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="block-12">
+            <figure>
+              <img src="static/images/img_2.jpg" alt="Image" class="img-fluid">
+            </figure>
+            <div class="text">
+              <span class="meta">May 20th 2018</span>
+              <div class="text-inner">
+                <h2 class="heading mb-3"><a href="#" class="text-black">World Cup Championship</a></h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad culpa, consectetur! Eligendi illo, repellat repudiandae cumque fugiat optio!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="block-12">
+            <figure>
+              <img src="static/images/img_3.jpg" alt="Image" class="img-fluid">
+            </figure>
+            <div class="text">
+              <span class="meta">May 20th 2018</span>
+              <div class="text-inner">
+                <h2 class="heading mb-3"><a href="#" class="text-black">World Cup Championship</a></h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad culpa, consectetur! Eligendi illo, repellat repudiandae cumque fugiat optio!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="block-12">
+            <figure>
+              <img src="static/images/img_4.jpg" alt="Image" class="img-fluid">
+            </figure>
+            <div class="text">
+              <span class="meta">May 20th 2018</span>
+              <div class="text-inner">
+                <h2 class="heading mb-3"><a href="#" class="text-black">World Cup Championship</a></h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad culpa, consectetur! Eligendi illo, repellat repudiandae cumque fugiat optio!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <!-- uses .block-12 -->
+          <div class="block-12">
+            <figure>
+              <img src="static/images/img_1.jpg" alt="Image" class="img-fluid">
+            </figure>
+            <div class="text">
+              <span class="meta">May 20th 2018</span>
+              <div class="text-inner">
+                <h2 class="heading mb-3"><a href="#" class="text-black">World Cup Championship</a></h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad culpa, consectetur! Eligendi illo, repellat repudiandae cumque fugiat optio!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+      </div>
+        </div>
+      </div>
+      
+    </div>
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md-12 text-center">
+            <h2 class="text-black">Últimas Notícias</h2>
+          </div>  
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-lg-4">
+            <div class="post-entry">
+              <div class="image">
+                <img src="static/images/flatwit.jpg" alt="Image" class="img-fluid">
+              </div>
+              <span  align="center" class="text-uppercase date d-block mb-3"><small>Fotos: Gilvan de Souza/Flamengo</small></span>
+              <div class="text p-4">
+                <h2 class="h5 text-black"><a href="#">Flamengo soma 67% de aproveitamento e desfruta boa fase contra paulistas desde 2019</a></h2>
+                <span class="text-uppercase date d-block mb-3"><small>ge Flamengo @ge_fla · 1h</small></span>
+                <p class="mb-0">Rubro-negro vive bons momentos contra os quatro grandes de São Paulo; são apenas oito derrotas em 39 jogos</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="post-entry">
+              <div class="image">
+                <img src="static/images/img_2.jpg" alt="Image" class="img-fluid">
+              </div>
+              <div class="text p-4">
+                <h2 class="h5 text-black"><a href="#">RealMad vs Striker Who Will Win?</a></h2>
+                <span class="text-uppercase date d-block mb-3"><small>By Colorlib &bullet; Sep 25, 2018</small></span>
+                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat beatae doloremque, ex corrupti perspiciatis.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="post-entry">
+              <div class="image">
+                <img src="static/images/img_3.jpg" alt="Image" class="img-fluid">
+              </div>
+              <div class="text p-4">
+                <h2 class="h5 text-black"><a href="#">RealMad vs Striker Who Will Win?</a></h2>
+                <span class="text-uppercase date d-block mb-3"><small>By Colorlib &bullet; Sep 25, 2018</small></span>
+                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat beatae doloremque, ex corrupti perspiciatis.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    
+    
+  </div>
+
+  <!-- <script src="static/js/jquery-3.3.1.min.js"></script>
+  <script src="static/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="static/js/jquery-ui.js"></script>
+  <script src="static/js/popper.min.js"></script>
+  <script src="static/js/bootstrap.min.js"></script>
+  <script src="static/js/owl.carousel.min.js"></script>
+  <script src="static/js/jquery.stellar.min.js"></script>
+  <script src="static/js/jquery.countdown.min.js"></script>
+  <script src="static/js/jquery.magnific-popup.min.js"></script>
+  <script src="static/js/aos.js"></script>
+
+  <script src="static/js/main.js"></script> -->
+  <script src="static/js/main.js"></script>  
+  </div>
+  {% endblock %}
