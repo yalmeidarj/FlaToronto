@@ -2,37 +2,8 @@
 <div class="site-blocks-vs site-section bg-light">
     <div class="container">
         <form class="user" method="POST">
+            <h3 align="center">Cadastre-se</h3>
             <br>
-            <div class="form-group row">
-                <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" name="name" id="exampleFirstName"
-                        placeholder="Nome">
-                </div>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-user" name="lastname" id="exampleLastName"
-                        placeholder="Sobrenome">
-                </div>
-            </div>
-            <br>
-            <div class="form-group">
-                <input type="email" class="form-control form-control-user" name="email" id="exampleInputEmail"
-                    placeholder="Email">
-            </div>
-            <br>
-            <div class="form-group row">
-                <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="password" name="password" class="form-control  form-control-user"
-                        id="exampleInputPassword" placeholder="Senha">
-                </div>
-                <div class="col-sm-6">
-                    <input type="password" name="password_confirm" class="form-control form-control-user"
-                        id="exampleRepeatPassword" placeholder="Repita Sua Senha">
-                </div>
-            </div>
-            <br>
-            <div align="center">
-            <button class="btn btn-primary" type="submit">Registrar Conta</button>
-            </div>
         {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for message in messages %}
@@ -40,6 +11,45 @@
             {% endfor %}
         {% endif %}
         {% endwith %}
+            <br><br>
+        <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" class="form-control form-control-user" name="name" id="exampleFirstName"
+                        placeholder="Nome Completo*">
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control form-control-user" name="username" id="exampleLastName"
+                        placeholder="Nome de Usuário*">
+                </div>
+            </div>
+            <br>
+            <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="email" name="email" class="form-control  form-control-user"
+                        id="exampleEmail" placeholder="Email*">
+                </div>
+                <div class="col-sm-6">
+                    <input type="phone" name="phone" class="form-control form-control-user"
+                        id="examplePhone" placeholder="Celular (Opcional)">
+                </div>
+                
+            </div>                      
+            <br>
+            <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="password" name="password" class="form-control  form-control-user"
+                        id="exampleInputPassword" placeholder="Senha*">
+                </div>
+                <div class="col-sm-6">
+                    <input type="password" name="password_confirm" class="form-control form-control-user"
+                        id="exampleRepeatPassword" placeholder="Repita Sua Senha*">
+                </div>
+            </div>
+            <br>
+            <div align="center">
+            <button class="btn btn-primary" type="submit">Registrar Conta</button>
+            </div>
+
             <hr>
         </form>
     </div>
