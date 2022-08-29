@@ -77,13 +77,13 @@
         <div class="border mb-3 rounded d-block d-lg-flex align-items-center p-3 next-match">
           
           <div class="mr-auto order-md-1 w-60 text-center text-lg-left mb-3 mb-lg-0">
-            Próxima Partida 
-            <div id="date-countdown"></div>
+            Próxima Partida - {{ league_next }} - {{ match_next_datetime }}
+            <div id="date-countdown" data-geocode='{{ match_next_datetime|tojson }}'></div>
           </div>
 
           <div class="ml-auto pr-4 order-md-2">
             <div class="h5 text-black text-uppercase text-center text-lg-left">
-              <span class="text-muted mx-3 text-normal mb-3 mb-lg-0 d-block d-md-inline ">{{ league_next }}</span>
+              <!-- <span class="text-muted mx-3 text-normal mb-3 mb-lg-0 d-block d-md-inline ">{{ league_next }}</span> -->
               <div class="d-block d-md-inline-block mb-3 mb-lg-0">
                 <img src="{{ home_team_logo_next }}" alt="Image" class="mr-3 image"><span class="d-block d-md-inline-block ml-0 ml-md-3 ml-lg-0">{{ home_team_next }} </span>
               </div>
@@ -436,5 +436,8 @@
 
   <script src="static/js/main.js"></script> -->
   <script src="static/js/main.js"></script>  
+  <!-- <script>
+    var  match_next_datetime = {{ match_next_datetime|tojson }};
+  </script> -->
   </div>
   {% endblock %}

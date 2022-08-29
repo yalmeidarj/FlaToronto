@@ -58,6 +58,9 @@ class User(db.Model):
 def index():
 
    league_next = response_next[0]["league"]
+   next_match_date = response_next[0]["date"]
+   next_match_time = response_next[0]["time"]
+   match_next_datetime = f"{next_match_date} {next_match_time}".replace("-", "/" )   
    home_team_next = response_next[0]["home_team"]
    away_team_next = response_next[0]["away_team"]
    home_team_logo_next = response_next[0]["home_team_logo"]
@@ -100,15 +103,16 @@ def registrar():
 
         # password confirmed
         password_hash = generate_password_hash(password, method='sha256')
-        try:
-
-         db.session.add(User(permissions="User", name=name, username=username, email=email, CPF=None, phone=None,  pwd=password_hash))
+        try:         
+         db.session.add(User(
+            permissions="User", name=name, username=username, email=email, CPF=None, phone=None,  pwd=password_hash
+            ))
          db.session.commit()
          flash('Pedido de registro de conta efetivado. Por favor, aguarde até que a Administração aprove seu registro antes de entrar em sua conta.')
          return redirect(url_for('registrar'))
         except:
          
-         flash("Tente novamente com Nome de Usuário diferente")
+         flash("Usuário não disponível. Tente um Nome de Usuário diferente")
          return redirect(url_for('registrar'))
 
       else:
@@ -160,6 +164,22 @@ def about():
 def gallery():
 
    return render_template('gallery.html', **locals())
+
+@app.route('/matches', methods = ["GET", "POST"])
+def matches():
+
+   return render_template('matches.html', **locals())
+
+@app.route('/team', methods = ["GET", "POST"])
+def team():
+
+   return render_template('team.html', **locals())
+
+@app.route('/contact', methods = ["GET", "POST"])
+def contact():
+
+   return render_template('contact.html', **locals())
+
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port='8888', debug=True)
