@@ -65,7 +65,7 @@ def fetch_matches(season="2022", team="127", from_date=str,to_date=str, next=Non
     '''# Pulls match data from Football API
     Takes only one of 3 parameters (string):
         last or next (number of matches to fetch eg next='3'), or from_date/to_date 
-    Team Id default to "Flamengo", "127".'''
+    Team Id default "127"(Flamengo). Season default to "2022"'''
     
     source_url = "https://api-football-v1.p.rapidapi.com/v3/fixtures"
 

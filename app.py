@@ -70,16 +70,22 @@ class Match(db.Model):
     def __repr__(self):
         return f'<Match {self.id}>'
 
+from datetime import datetime
+def myFunc(e):
+  return e
 
 
+response_next = db.session.query(Match).filter(Match.status == "NS").group_by(Match.date).all() #db.session.query(Match).filter(Match.status == "NS").all()[::-1]
+response_last = db.session.query(Match).filter(Match.status == "FT").group_by(Match.date).all()[::-1]
 
 
-response_next = db.session.query(Match).filter(Match.status == "NS").all()[::-1]
-response_last = db.session.query(Match).filter(Match.status == "FT").all()[::-1]
+# for i in response_last:
+
+#    print(f"Last: {i.id} - Date: {i.date}\n")
 
 
-# for item in response_last:
-#    print(f"{item.home_team} x {item.away_team} - {item.date}\n")
+for item in response_next:
+   print(f"{item.home_team} x {item.away_team} - {item.date}\n")
 
 
 @app.route('/', methods = ["GET", "POST"])
@@ -87,6 +93,7 @@ def index():
 
    league_next = response_next[0].league
    next_match_date = response_next[0].date
+   #next_match_date = next_match_date.sort()
    next_match_time = response_next[0].time
    match_next_datetime = f"{next_match_date} {next_match_time}".replace("-", "/" )   
    home_team_next = response_next[0].home_team
