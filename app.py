@@ -11,13 +11,9 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 import datetime
 from sqlalchemy.engine import result
 import sqlalchemy
+import os
+from dotenv import load_dotenv
 
-response_next = flaData.response_next
-response_last = flaData.response_last
-
-
-
-data = [{'id': 838267, 'date': ('2022-09-28',), 'time': '22:00', 'stadium': 'Estádio Governador Plácido Aderaldo Castelo', 'status': 'NS', 'city_match': 'Fortaleza, Ceará', 'league': 'Serie A', 'league_logo': 'https://media.api-sports.io/football/leagues/71.png', 'home_team': 'Fortaleza EC', 'home_team_logo': 'https://media.api-sports.io/football/teams/154.png', 'away_team': 'Flamengo', 'away_team_logo': 'https://media.api-sports.io/football/teams/127.png', 'score': {'home': None, 'away': None}, 'score_extratime': {'home': None, 'away': None}, 'score_penalty': {'home': None, 'away': None}}, {'id': 838267, 'date': ('2022-09-28',), 'time': '22:00', 'stadium': 'Estádio Governador Plácido Aderaldo Castelo', 'status': 'NS', 'city_match': 'Fortaleza, Ceará', 'league': 'Serie A', 'league_logo': 'https://media.api-sports.io/football/leagues/71.png', 'home_team': 'Fortaleza EC', 'home_team_logo': 'https://media.api-sports.io/football/teams/154.png', 'away_team': 'Flamengo', 'away_team_logo': 'https://media.api-sports.io/football/teams/127.png', 'score': {'home': None, 'away': None}, 'score_extratime': {'home': None, 'away': None}, 'score_penalty': {'home': None, 'away': None}}, {'id': 838267, 'date': ('2022-09-28',), 'time': '22:00', 'stadium': 'Estádio Governador Plácido Aderaldo Castelo', 'status': 'NS', 'city_match': 'Fortaleza, Ceará', 'league': 'Serie A', 'league_logo': 'https://media.api-sports.io/football/leagues/71.png', 'home_team': 'Fortaleza EC', 'home_team_logo': 'https://media.api-sports.io/football/teams/154.png', 'away_team': 'Flamengo', 'away_team_logo': 'https://media.api-sports.io/football/teams/127.png', 'score': {'home': None, 'away': None}, 'score_extratime': {'home': None, 'away': None}, 'score_penalty': {'home': None, 'away': None}}, {'id': 838267, 'date': ('2022-09-28',), 'time': '22:00', 'stadium': 'Estádio Governador Plácido Aderaldo Castelo', 'status': 'NS', 'city_match': 'Fortaleza, Ceará', 'league': 'Serie A', 'league_logo': 'https://media.api-sports.io/football/leagues/71.png', 'home_team': 'Fortaleza EC', 'home_team_logo': 'https://media.api-sports.io/football/teams/154.png', 'away_team': 'Flamengo', 'away_team_logo': 'https://media.api-sports.io/football/teams/127.png', 'score': {'home': None, 'away': None}, 'score_extratime': {'home': None, 'away': None}, 'score_penalty': {'home': None, 'away': None}}, {'id': 838267, 'date': ('2022-09-28',), 'time': '22:00', 'stadium': 'Estádio Governador Plácido Aderaldo Castelo', 'status': 'NS', 'city_match': 'Fortaleza, Ceará', 'league': 'Serie A', 'league_logo': 'https://media.api-sports.io/football/leagues/71.png', 'home_team': 'Fortaleza EC', 'home_team_logo': 'https://media.api-sports.io/football/teams/154.png', 'away_team': 'Flamengo', 'away_team_logo': 'https://media.api-sports.io/football/teams/127.png', 'score': {'home': None, 'away': None}, 'score_extratime': {'home': None, 'away': None}, 'score_penalty': {'home': None, 'away': None}}, {'id': 838267, 'date': ('2022-09-28',), 'time': '22:00', 'stadium': 'Estádio Governador Plácido Aderaldo Castelo', 'status': 'NS', 'city_match': 'Fortaleza, Ceará', 'league': 'Serie A', 'league_logo': 'https://media.api-sports.io/football/leagues/71.png', 'home_team': 'Fortaleza EC', 'home_team_logo': 'https://media.api-sports.io/football/teams/154.png', 'away_team': 'Flamengo', 'away_team_logo': 'https://media.api-sports.io/football/teams/127.png', 'score': {'home': None, 'away': None}, 'score_extratime': {'home': None, 'away': None}, 'score_penalty': {'home': None, 'away': None}}, {'id': 838267, 'date': ('2022-09-28',), 'time': '22:00', 'stadium': 'Estádio Governador Plácido Aderaldo Castelo', 'status': 'NS', 'city_match': 'Fortaleza, Ceará', 'league': 'Serie A', 'league_logo': 'https://media.api-sports.io/football/leagues/71.png', 'home_team': 'Fortaleza EC', 'home_team_logo': 'https://media.api-sports.io/football/teams/154.png', 'away_team': 'Flamengo', 'away_team_logo': 'https://media.api-sports.io/football/teams/127.png', 'score': {'home': None, 'away': None}, 'score_extratime': {'home': None, 'away': None}, 'score_penalty': {'home': None, 'away': None}}, {'id': 838267, 'date': ('2022-09-28',), 'time': '22:00', 'stadium': 'Estádio Governador Plácido Aderaldo Castelo', 'status': 'NS', 'city_match': 'Fortaleza, Ceará', 'league': 'Serie A', 'league_logo': 'https://media.api-sports.io/football/leagues/71.png', 'home_team': 'Fortaleza EC', 'home_team_logo': 'https://media.api-sports.io/football/teams/154.png', 'away_team': 'Flamengo', 'away_team_logo': 'https://media.api-sports.io/football/teams/127.png', 'score': {'home': None, 'away': None}, 'score_extratime': {'home': None, 'away': None}, 'score_penalty': {'home': None, 'away': None}}, {'id': 838267, 'date': ('2022-09-28',), 'time': '22:00', 'stadium': 'Estádio Governador Plácido Aderaldo Castelo', 'status': 'NS', 'city_match': 'Fortaleza, Ceará', 'league': 'Serie A', 'league_logo': 'https://media.api-sports.io/football/leagues/71.png', 'home_team': 'Fortaleza EC', 'home_team_logo': 'https://media.api-sports.io/football/teams/154.png', 'away_team': 'Flamengo', 'away_team_logo': 'https://media.api-sports.io/football/teams/127.png', 'score': {'home': None, 'away': None}, 'score_extratime': {'home': None, 'away': None}, 'score_penalty': {'home': None, 'away': None}}, {'id': 838267, 'date': ('2022-09-28',), 'time': '22:00', 'stadium': 'Estádio Governador Plácido Aderaldo Castelo', 'status': 'NS', 'city_match': 'Fortaleza, Ceará', 'league': 'Serie A', 'league_logo': 'https://media.api-sports.io/football/leagues/71.png', 'home_team': 'Fortaleza EC', 'home_team_logo': 'https://media.api-sports.io/football/teams/154.png', 'away_team': 'Flamengo', 'away_team_logo': 'https://media.api-sports.io/football/teams/127.png', 'score': {'home': None, 'away': None}, 'score_extratime': {'home': None, 'away': None}, 'score_penalty': {'home': None, 'away': None}}, {'id': 838267, 'date': ('2022-09-28',), 'time': '22:00', 'stadium': 'Estádio Governador Plácido Aderaldo Castelo', 'status': 'NS', 'city_match': 'Fortaleza, Ceará', 'league': 'Serie A', 'league_logo': 'https://media.api-sports.io/football/leagues/71.png', 'home_team': 'Fortaleza EC', 'home_team_logo': 'https://media.api-sports.io/football/teams/154.png', 'away_team': 'Flamengo', 'away_team_logo': 'https://media.api-sports.io/football/teams/127.png', 'score': {'home': None, 'away': None}, 'score_extratime': {'home': None, 'away': None}, 'score_penalty': {'home': None, 'away': None}}, {'id': 838267, 'date': ('2022-09-28',), 'time': '22:00', 'stadium': 'Estádio Governador Plácido Aderaldo Castelo', 'status': 'NS', 'city_match': 'Fortaleza, Ceará', 'league': 'Serie A', 'league_logo': 'https://media.api-sports.io/football/leagues/71.png', 'home_team': 'Fortaleza EC', 'home_team_logo': 'https://media.api-sports.io/football/teams/154.png', 'away_team': 'Flamengo', 'away_team_logo': 'https://media.api-sports.io/football/teams/127.png', 'score': {'home': None, 'away': None}, 'score_extratime': {'home': None, 'away': None}, 'score_penalty': {'home': None, 'away': None}}, {'id': 838267, 'date': ('2022-09-28',), 'time': '22:00', 'stadium': 'Estádio Governador Plácido Aderaldo Castelo', 'status': 'NS', 'city_match': 'Fortaleza, Ceará', 'league': 'Serie A', 'league_logo': 'https://media.api-sports.io/football/leagues/71.png', 'home_team': 'Fortaleza EC', 'home_team_logo': 'https://media.api-sports.io/football/teams/154.png', 'away_team': 'Flamengo', 'away_team_logo': 'https://media.api-sports.io/football/teams/127.png', 'score': {'home': None, 'away': None}, 'score_extratime': {'home': None, 'away': None}, 'score_penalty': {'home': None, 'away': None}}, {'id': 838267, 'date': ('2022-09-28',), 'time': '22:00', 'stadium': 'Estádio Governador Plácido Aderaldo Castelo', 'status': 'NS', 'city_match': 'Fortaleza, Ceará', 'league': 'Serie A', 'league_logo': 'https://media.api-sports.io/football/leagues/71.png', 'home_team': 'Fortaleza EC', 'home_team_logo': 'https://media.api-sports.io/football/teams/154.png', 'away_team': 'Flamengo', 'away_team_logo': 'https://media.api-sports.io/football/teams/127.png', 'score': {'home': None, 'away': None}, 'score_extratime': {'home': None, 'away': None}, 'score_penalty': {'home': None, 'away': None}}, {'id': 838267, 'date': ('2022-09-28',), 'time': '22:00', 'stadium': 'Estádio Governador Plácido Aderaldo Castelo', 'status': 'NS', 'city_match': 'Fortaleza, Ceará', 'league': 'Serie A', 'league_logo': 'https://media.api-sports.io/football/leagues/71.png', 'home_team': 'Fortaleza EC', 'home_team_logo': 'https://media.api-sports.io/football/teams/154.png', 'away_team': 'Flamengo', 'away_team_logo': 'https://media.api-sports.io/football/teams/127.png', 'score': {'home': None, 'away': None}, 'score_extratime': {'home': None, 'away': None}, 'score_penalty': {'home': None, 'away': None}}]
 
 
 
@@ -34,7 +30,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 
-##CREATE TABLE
+## TABLE
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     permissions = db.Column(db.String(250), nullable=False)
@@ -45,43 +41,71 @@ class User(db.Model):
     CPF = db.Column(db.String(250), unique=True)
     pwd = db.Column(db.String(750), nullable=False)
 
-    #Optional: this will allow each book object to be identified by its title when printed.
+    #Optional: this will allow each User object to be identified by its title when printed.
     def __repr__(self):
         return f'<User {self.name}>'
     
 
+## TABLE
+class Match(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.String(250))
+    time = db.Column(db.String(250))
+    stadium = db.Column(db.String(250))
+    status = db.Column(db.String(250))
+    city_match = db.Column(db.String(250))
+    league = db.Column(db.String(250))
+    league_logo = db.Column(db.String(750))
+    home_team = db.Column(db.String(250))
+    home_team_id = db.Column(db.String(250) )
+    home_team_logo = db.Column(db.String(250))
+    away_team = db.Column(db.String(250)) 
+    away_team_id = db.Column(db.String(250) )
+    away_team_logo = db.Column(db.String(250))
+    score = db.Column(db.String(250))
+    score_extratime = db.Column(db.String(250))
+    score_penalty = db.Column(db.String(750))
+
+    #Optional: this will allow each Match object to be identified by its title when printed.
+    def __repr__(self):
+        return f'<Match {self.id}>'
 
 
 
+
+
+response_next = db.session.query(Match).filter(Match.status == "NS").all()[::-1]
+response_last = db.session.query(Match).filter(Match.status == "FT").all()[::-1]
+
+#print(response_last)
+
+for item in response_last:
+   print(f"{item.home_team} x {item.away_team} - {item.date}\n")
 
 @app.route('/', methods = ["GET", "POST"])
 def index():
 
-   league_next = response_next[0]["league"]
-   next_match_date = response_next[0]["date"]
-   next_match_time = response_next[0]["time"]
+   league_next = response_next[0].league
+   next_match_date = response_next[0].date
+   next_match_time = response_next[0].time
    match_next_datetime = f"{next_match_date} {next_match_time}".replace("-", "/" )   
-   home_team_next = response_next[0]["home_team"]
-   away_team_next = response_next[0]["away_team"]
-   home_team_logo_next = response_next[0]["home_team_logo"]
-   away_team_logo_next = response_next[0]["away_team_logo"]
+   home_team_next = response_next[0].home_team
+   away_team_next = response_next[0].away_team
+   home_team_logo_next = response_next[0].home_team_logo
+   away_team_logo_next = response_next[0].away_team_logo
 
-   all_matches = response_last[1:9]
-   league_last = response_last[0]["league"]
-   match_date_last = response_last[0]["date"]
-   match_time_last = response_last[0]["time"]
-   score_home_last = response_last[0]["score"]["home"]
-   score_away_last = response_last[0]["score"]["away"]
-   home_team_last = response_last[0]["home_team"]
-   away_team_last = response_last[0]["away_team"]
-   home_team_logo_last = response_last[0]["home_team_logo"]
-   away_team_logo_last = response_last[0]["away_team_logo"]
+   all_matches = response_last
+   league_last = response_last[0].league
+   match_date_last = response_last[0].date
+   match_time_last = response_last[0].time
+   score_home_last = response_last[0].score[0]
+   score_away_last = response_last[0].score[4]
+   home_team_last = response_last[0].home_team
+   away_team_last = response_last[0].away_team
+   home_team_logo_last = response_last[0].home_team_logo
+   away_team_logo_last = response_last[0].away_team_logo
    return render_template('index.html', **locals())
 
-# @app.route('/i', methods = ["GET", "POST"])
-# def i():
-
-#    return render_template('i.html', **locals())
 
 @app.route('/registrar' , methods = ['GET','POST'])
 def registrar():  
