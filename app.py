@@ -25,7 +25,7 @@ app = Flask(__name__)
 app.config.from_object(config.config['development'])
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] =  "sqlite:///fla.db"# "postgresql://hostman:4e12f875@143.198.52.41:5433/database"
+app.config['SQLALCHEMY_DATABASE_URI'] =  "sqlite:///fla.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -77,10 +77,10 @@ class Match(db.Model):
 response_next = db.session.query(Match).filter(Match.status == "NS").all()[::-1]
 response_last = db.session.query(Match).filter(Match.status == "FT").all()[::-1]
 
-#print(response_last)
 
-for item in response_last:
-   print(f"{item.home_team} x {item.away_team} - {item.date}\n")
+# for item in response_last:
+#    print(f"{item.home_team} x {item.away_team} - {item.date}\n")
+
 
 @app.route('/', methods = ["GET", "POST"])
 def index():

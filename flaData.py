@@ -93,7 +93,7 @@ def insert_match_to_db(func:list):
          
     
     matches = func
-    #match_data = [(match["fixture"]["id"], match["fixture"]["date"][:10], match["fixture"]["date"][11:16], match["fixture"]["venue"]["name"], match["fixture"]["status"]["short"], match["fixture"]["venue"]["city"], match["league"]["name"], match["league"]["logo"], match["teams"]["home"]["name"], match["teams"]["home"]["id"], match["teams"]["home"]["logo"], match["teams"]["away"]["name"], match["teams"]["away"]["id"], match["teams"]["away"]["logo"], f'{match["goals"]["home"]} : {match["goals"]["away"]}', f'{match["score"]["extratime"]["home"]} : {match["score"]["extratime"]["away"]}', f'{match["score"]["penalty"]["home"]} : {match["score"]["penalty"]["away"]}' for match in matches)]
+    
 
     for match in matches:
         
@@ -128,25 +128,3 @@ def insert_match_to_db(func:list):
 
 # insert_match_to_db(fetch_matches(next="3"))
 # insert_match_to_db(fetch_matches(last="9"))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# s = []
-# ns = []
-# for i in data:
-#     if i["status"] == "NS":
-#         ns.append(i)
-#     else:
-#         s.append(i)
-# print(f"Started matches: {len(s)}\nNon started matches: {len(ns)}")
