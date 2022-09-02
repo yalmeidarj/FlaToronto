@@ -64,6 +64,7 @@ class Match(db.Model):
     score = db.Column(db.String(250))
     score_extratime = db.Column(db.String(250))
     score_penalty = db.Column(db.String(750))
+    match_id = db.Column(db.Integer)
 
     #Optional: this will allow each Match object to be identified by its title when printed.
     def __repr__(self):

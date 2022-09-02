@@ -20,7 +20,7 @@
         <div class="border mb-3 rounded d-block d-lg-flex align-items-center p-3 next-match">
           
           <div class="mr-auto order-md-1 w-60 text-center text-lg-left mb-3 mb-lg-0">
-            Próxima Partida - {{ league_next }} - {{ match_next_datetime }}                       
+            Próxima Partida - {{ next_match_date }}                       
             <div id="date-countdown" data-geocode='{{ match_next_datetime|tojson }}'></div>
                  
               <div id="map">
@@ -44,7 +44,7 @@
               </div>
                      
             </div>
-            <span class="d-block d-md-inline-block ml-0 ml-md-4 ml-lg-0">{{ league_next }} - {{ match_next_datetime }}</span>
+            <span class="d-block d-md-inline-block ml-0 ml-md-4 ml-lg-0">{{ league_next }} - {{ next_match_time }}</span>
           </div>
 
 
@@ -112,7 +112,7 @@
                   <div class="row align-items-center">
                     
                     <div class="col-md-12"> 
-                      {% for match in all_matches %}                     
+                      {% for match in all_matches[1:] %}                     
                       <div class="row bg-white align-items-center ml-0 mr-0 py-4 match-entry">
                         
                         <div class="col-md-4 col-lg-4 mb-4 mb-lg-0">

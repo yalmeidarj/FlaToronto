@@ -42,7 +42,7 @@ def insert_into_table(table, match_info, cols=None ):
 
     if cols != None:
         sql = f''' INSERT INTO {table}({cols})
-        VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ''' 
+        VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ''' 
     else:
         sql = f''' INSERT INTO {table}( 
         id, date, time,
@@ -50,8 +50,8 @@ def insert_into_table(table, match_info, cols=None ):
         league, league_logo, home_team,
         home_team_id, home_team_logo, away_team,
         away_team_id, away_team_logo, score,
-        score_extratime, score_penalty)
-        VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)  '''
+        score_extratime, score_penalty, match_id)
+        VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)  '''
 
     cur = conn.cursor()
     cur.execute(sql, match_info)
@@ -75,11 +75,11 @@ def fetch_matches(season="2022", team="127", from_date=str,to_date=str, next=Non
     }
     
     if last != None:
-        querystring = {"team":team, "last":last}
+        querystring = {"team":team, "last":last, "timezone": "America/Toronto"}
     elif next != None:
-        querystring = {"team":team, "next":next}		
+        querystring = {"team":team, "next":next, "timezone": "America/Toronto"}		
     else:
-        querystring = {"season":season,"team":team,"from":from_date,"to":to_date}
+        querystring = {"season":season,"team":team,"from":from_date,"to":to_date, "timezone": "America/Toronto"}
 
     data = requests.request("GET", source_url, headers=headers, params=querystring).json()
     return data["response"]
@@ -97,7 +97,7 @@ def insert_match_to_db(func:list):
 
     for match in matches:
         
-        id = int(match["fixture"]["id"])
+        id = None
         date = match["fixture"]["date"][:10]        
         time = match["fixture"]["date"][11:16]        
         stadium = match["fixture"]["venue"]["name"]        
@@ -114,12 +114,12 @@ def insert_match_to_db(func:list):
         score =  f'{match["goals"]["home"]} : {match["goals"]["away"]}'        
         score_extratime =  f'{match["score"]["extratime"]["home"]} : {match["score"]["extratime"]["away"]}'        
         score_penalty = f'{match["score"]["penalty"]["home"]} : {match["score"]["penalty"]["away"]}'
-        
+        match_id = int(match["fixture"]["id"])
         match_data=[
             id, date, time, stadium, status, city_match,
             league, league_logo, home_team, home_team_id,
             home_team_logo, away_team, away_team_id, away_team_logo, score,
-            score_extratime, score_penalty
+            score_extratime, score_penalty, match_id
         ]
 
         values = convert_to_tuple(match_data) 
