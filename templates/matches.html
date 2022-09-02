@@ -1,7 +1,8 @@
 {% extends 'base.html' %} {% block body %}  
   <div class="site-wrap">
-  
-    <div class="site-blocks-cover overlay" style="background-image: url(images/hero_bg_3.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+    <!--Banner  -->
+
+    <!-- <div class="site-blocks-cover overlay" style="background-image: url(images/hero_bg_3.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
       <div class="container">
         <div class="row align-items-center justify-content-start">
           <div class="col-md-6 text-center text-md-left" data-aos="fade-up" data-aos-delay="400">
@@ -10,14 +11,46 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     
-    <div class="site-section site-blocks-vs">
+    <div class="site-blocks-vs site-section bg-light">
       <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="bg-image overlay-success rounded mb-5" style="background-image: url('images/hero_bg_1.jpg');" data-stellar-background-ratio="0.5">
+
+        <div class="border mb-3 rounded d-block d-lg-flex align-items-center p-3 next-match">
+          
+          <div class="mr-auto order-md-1 w-60 text-center text-lg-left mb-3 mb-lg-0">
+            Próxima Partida - {{ league_next }} - {{ match_next_datetime }}                       
+            <div id="date-countdown" data-geocode='{{ match_next_datetime|tojson }}'></div>
+                 
+              <div id="map">
+                <iframe src="https://maps.google.com/maps?q=Bloor+Street+West+1026,+Toronto+-+ON,+Canada&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="360px" frameborder="0" style="border:0" title="Mapa Google - Atendimento no RJ" allowfullscreen=""></iframe>
+              </div>
+              <div class="mr-auto order-md-1 w-60 text-center text-lg-right mb-3 mb-lg-0">Bloor St W. 1026, Toronto, Ontario</div> 
+          </div>
+
+
+          <div class="ml-auto pr-4 order-md-2">
+            <div class="h5 text-black text-uppercase text-center text-lg-left">
+              <!-- <span class="text-muted mx-3 text-normal mb-3 mb-lg-0 d-block d-md-inline ">{{ league_next }}</span> -->
+              <div class="d-block d-md-inline-block mb-3 mb-lg-0">
+                <img src="{{ home_team_logo_next }}" alt="Image" class="mr-3 image"><span class="d-block d-md-inline-block ml-0 ml-md-3 ml-lg-0">{{ home_team_next }} </span>
+              </div>
+              <span class="text-muted mx-3 text-normal mb-3 mb-lg-0 d-block d-md-inline ">vs</span> 
+              <div class="d-block d-md-inline-block">
+                <img src="{{ away_team_logo_next }}" alt="Image" class="mr-3 image"><span class="d-block d-md-inline-block ml-0 ml-md-3 ml-lg-0">{{ away_team_next }}</span>
+                <br>
+                
+              </div>
+                     
+            </div>
+            <span class="d-block d-md-inline-block ml-0 ml-md-4 ml-lg-0">{{ league_next }} - {{ match_next_datetime }}</span>
+          </div>
+
+
+          
+        </div>
+        <div class="bg-image overlay-success rounded mb-5" style="background-image: url('static/images/hero_bg_1.jpg');" data-stellar-background-ratio="0.5">
           
           <div class="row align-items-center">
             <div class="col-md-12 col-lg-4 mb-4 mb-lg-0">
@@ -25,11 +58,11 @@
               <div class="text-center text-lg-left">
                 <div class="d-block d-lg-flex align-items-center">
                   <div class="image mx-auto mb-3 mb-lg-0 mr-lg-3">
-                    <img src="images/img_1_sq.jpg" alt="Image" class="img-fluid">
+                    <img src="{{ home_team_logo_last }}" alt="Image" class="img-fluid">
                   </div>
                   <div class="text">
-                    <h3 class="h5 mb-0 text-black">Sea Hawks</h3>
-                    <span class="text-uppercase small country text-black">Brazil</span>
+                    <h3 class="h5 mb-0 text-black">{{home_team_last}}</h3>
+                    <span class="text-uppercase small country text-black">MANDANTE</span>
                   </div>
                 </div>
               </div>
@@ -37,9 +70,9 @@
             </div>
             <div class="col-md-12 col-lg-4 text-center mb-4 mb-lg-0">
               <div class="d-inline-block">
-                <p class="mb-2"><small class="text-uppercase text-black font-weight-bold">Premier League &mdash; Round 10</small></p>
-                <div class="bg-black py-2 px-4 mb-2 text-white d-inline-block rounded"><span class="h3">3:2</span></div>
-                <p class="mb-0"><small class="text-uppercase text-black font-weight-bold">10 September / 7:30 AM</small></p>
+                <p class="mb-2"><small class="text-uppercase text-black font-weight-bold">Última Partida</small></p>
+                <div class="bg-black py-2 px-4 mb-2 text-white d-inline-block rounded"><span class="h3">{{ score_home_last }} : {{ score_away_last }}</span></div>
+                <p class="mb-0"><small class="text-uppercase text-black font-weight-bold">{{ league_last }} - {{ match_date_last }}</small></p>
               </div>
             </div>
 
@@ -47,11 +80,11 @@
               <div class="">
                 <div class="d-block d-lg-flex align-items-center">
                   <div class="image mx-auto ml-lg-3 mb-3 mb-lg-0 order-2">
-                    <img src="images/img_4_sq.jpg" alt="Image" class="img-fluid">
+                    <img src="{{ away_team_logo_last }}" alt="Image" class="img-fluid">
                   </div>
                   <div class="text order-1">
-                    <h3 class="h5 mb-0 text-black">Steelers</h3>
-                    <span class="text-uppercase small country text-black">London</span>
+                    <h3 class="h5 mb-0 text-black">{{ away_team_last }}</h3>
+                    <span class="text-uppercase small country text-black">VISITANTE</span>
                   </div>
                 </div>
               </div>
@@ -59,289 +92,76 @@
 
           </div>
         </div>
-          </div>
-        </div>
-        <div class="row mb-5">
-          <div class="col-md-12">
-            <div class="border mb-3 rounded d-block d-lg-flex align-items-center p-3 next-match">
-              <div class="mr-auto order-md-1 w-60 text-center text-lg-left mb-3 mb-lg-0">
-                Next match 
-                <div id="date-countdown"></div>
-              </div>
 
-              <div class="ml-auto pr-4 order-md-2">
-                <div class="h5 text-black text-uppercase text-center text-lg-left">
-                  <div class="d-block d-md-inline-block mb-3 mb-lg-0">
-                    <img src="images/img_1_sq.jpg" alt="Image" class="mr-3 image"><span class="d-block d-md-inline-block ml-0 ml-md-3 ml-lg-0">Sea Hawlks </span>
-                  </div>
-                  <span class="text-muted mx-3 text-normal mb-3 mb-lg-0 d-block d-md-inline ">vs</span> 
-                  <div class="d-block d-md-inline-block">
-                    <img src="images/img_3_sq.jpg" alt="Image" class="mr-3 image"><span class="d-block d-md-inline-block ml-0 ml-md-3 ml-lg-0">Patriots</span>
-                  </div>
-                </div>
-              </div>
-              
-              
-            </div>
-          </div>
-        </div>
-        <div id="listingTable" class="row align-items-center mb-5">
-          <div id="listingTable" class="col-md-12">
-
-             <div > 
-              <div id="m1" class="row bg-white align-items-center ml-0 mr-0 py-4 match-entry">
-                <div class="col-md-4 col-lg-4 mb-4 mb-lg-0">
-
-                  <div  class="text-center text-lg-left">
-                    <div class="d-block d-lg-flex align-items-center">
-                      <div class="image image-small text-center mb-3 mb-lg-0 mr-lg-3">
-                        <img src="images/img_1_sq.jpg" alt="Image" class="img-fluid">
-                      </div>
-                      <div class="text">
-                        <h3 class="h5 mb-0 text-black">Packers</h3>
-                        <span class="text-uppercase small country">Brazil</span>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-                <div class="col-md-4 col-lg-4 text-center mb-4 mb-lg-0">
-                  <div class="d-inline-block">
-                    <div class="bg-black py-2 px-4 mb-2 text-white d-inline-block rounded"><span class="h5">3:2</span></div>
-                  </div>
-                </div>
-
-                <div class="col-md-4 col-lg-4 text-center text-lg-right">
-                  <div class="">
-                    <div class="d-block d-lg-flex align-items-center">
-                      <div class="image image-small ml-lg-3 mb-3 mb-lg-0 order-2">
-                        <img src="images/img_4_sq.jpg" alt="Image" class="img-fluid">
-                      </div>
-                      <div class="text order-1 w-100">
-                        <h3 class="h5 mb-0 text-black">Steelers</h3>
-                        <span class="text-uppercase small country">London</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- END row -->
-
-            <div  id="m2" class="row bg-white align-items-center ml-0 mr-0 py-4 match-entry">
-              <div class="col-md-4 col-lg-4 mb-4 mb-lg-0">
-
-                <div   class="text-center text-lg-left">
-                  <div class="d-block d-lg-flex align-items-center">
-                    <div class="image image-small text-center mb-3 mb-lg-0 mr-lg-3">
-                      <img src="images/img_1_sq.jpg" alt="Image" class="img-fluid">
-                    </div>
-                    <div class="text">
-                      <h3 class="h5 mb-0 text-black">Patriots</h3>
-                      <span class="text-uppercase small country">Brazil</span>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-              <div class="col-md-4 col-lg-4 text-center mb-4 mb-lg-0">
-                <div class="d-inline-block">
-                  <div class="bg-black py-2 px-4 mb-2 text-white d-inline-block rounded"><span class="h5">3:2</span></div>
-                </div>
-              </div>
-
-              <div class="col-md-4 col-lg-4 text-center text-lg-right">
-                <div class="">
-                  <div class="d-block d-lg-flex align-items-center">
-                    <div class="image image-small ml-lg-3 mb-3 mb-lg-0 order-2">
-                      <img src="images/img_3_sq.jpg" alt="Image" class="img-fluid">
-                    </div>
-                    <div class="text order-1 w-100">
-                      <h3 class="h5 mb-0 text-black">Cowboys</h3>
-                      <span class="text-uppercase small country">London</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- END row -->
-
-            <div id="m3" class="row bg-white align-items-center ml-0 mr-0 py-4 match-entry">
-              <div class="col-md-4 col-lg-4 mb-4 mb-lg-0">
-
-                <div class="text-center text-lg-left">
-                  <div class="d-block d-lg-flex align-items-center">
-                    <div class="image image-small text-center mb-3 mb-lg-0 mr-lg-3">
-                      <img src="images/img_1_sq.jpg" alt="Image" class="img-fluid">
-                    </div>
-                    <div class="text">
-                      <h3 class="h5 mb-0 text-black">Raiders</h3>
-                      <span class="text-uppercase small country">Brazil</span>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-              <div class="col-md-4 col-lg-4 text-center mb-4 mb-lg-0">
-                <div class="d-inline-block">
-                  <div class="bg-black py-2 px-4 mb-2 text-white d-inline-block rounded"><span class="h5">3:2</span></div>
-                </div>
-              </div>
-
-              <div class="col-md-4 col-lg-4 text-center text-lg-right">
-                <div class="">
-                  <div class="d-block d-lg-flex align-items-center">
-                    <div class="image image-small ml-lg-3 mb-3 mb-lg-0 order-2">
-                      <img src="images/img_4_sq.jpg" alt="Image" class="img-fluid">
-                    </div>
-                    <div class="text order-1 w-100">
-                      <h3 class="h5 mb-0 text-black">Chiefs</h3>
-                      <span class="text-uppercase small country">London</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- END row -->
-
-            <div id="m4" class="row bg-white align-items-center ml-0 mr-0 py-4 match-entry">
-              <div class="col-md-4 col-lg-4 mb-4 mb-lg-0">
-
-                <div class="text-center text-lg-left">
-                  <div class="d-block d-lg-flex align-items-center">
-                    <div class="image image-small text-center mb-3 mb-lg-0 mr-lg-3">
-                      <img src="images/img_1_sq.jpg" alt="Image" class="img-fluid">
-                    </div>
-                    <div class="text">
-                      <h3 class="h5 mb-0 text-black">Packers</h3>
-                      <span class="text-uppercase small country">Brazil</span>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-              <div class="col-md-4 col-lg-4 text-center mb-4 mb-lg-0">
-                <div class="d-inline-block">
-                  <div class="bg-black py-2 px-4 mb-2 text-white d-inline-block rounded"><span class="h5">3:2</span></div>
-                </div>
-              </div>
-
-              <div class="col-md-4 col-lg-4 text-center text-lg-right">
-                <div class="">
-                  <div class="d-block d-lg-flex align-items-center">
-                    <div class="image image-small ml-lg-3 mb-3 mb-lg-0 order-2">
-                      <img src="images/img_4_sq.jpg" alt="Image" class="img-fluid">
-                    </div>
-                    <div class="text order-1 w-100">
-                      <h3 class="h5 mb-0 text-black">Steelers</h3>
-                      <span class="text-uppercase small country">London</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- END row -->
-
-            <div id="m5" class="row bg-white align-items-center ml-0 mr-0 py-4 match-entry">
-              <div class="col-md-4 col-lg-4 mb-4 mb-lg-0">
-
-                <div class="text-center text-lg-left">
-                  <div class="d-block d-lg-flex align-items-center">
-                    <div class="image image-small text-center mb-3 mb-lg-0 mr-lg-3">
-                      <img src="images/img_1_sq.jpg" alt="Image" class="img-fluid">
-                    </div>
-                    <div class="text">
-                      <h3 class="h5 mb-0 text-black">Patriots</h3>
-                      <span class="text-uppercase small country">Brazil</span>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-              <div class="col-md-4 col-lg-4 text-center mb-4 mb-lg-0">
-                <div class="d-inline-block">
-                  <div class="bg-black py-2 px-4 mb-2 text-white d-inline-block rounded"><span class="h5">3:2</span></div>
-                </div>
-              </div>
-
-              <div class="col-md-4 col-lg-4 text-center text-lg-right">
-                <div class="">
-                  <div class="d-block d-lg-flex align-items-center">
-                    <div class="image image-small ml-lg-3 mb-3 mb-lg-0 order-2">
-                      <img src="images/img_3_sq.jpg" alt="Image" class="img-fluid">
-                    </div>
-                    <div class="text order-1 w-100">
-                      <h3 class="h5 mb-0 text-black">Cowboys</h3>
-                      <span class="text-uppercase small country">London</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- END row -->
-
-            <div id="m6" class="row bg-white align-items-center ml-0 mr-0 py-4 match-entry">
-              <div class="col-md-4 col-lg-4 mb-4 mb-lg-0">
-
-                <div class="text-center text-lg-left">
-                  <div class="d-block d-lg-flex align-items-center">
-                    <div class="image image-small text-center mb-3 mb-lg-0 mr-lg-3">
-                      <img src="images/img_1_sq.jpg" alt="Image" class="img-fluid">
-                    </div>
-                    <div class="text">
-                      <h3 class="h5 mb-0 text-black">Raiders</h3>
-                      <span class="text-uppercase small country">Brazil</span>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-              <div class="col-md-4 col-lg-4 text-center mb-4 mb-lg-0">
-                <div class="d-inline-block">
-                  <div class="bg-black py-2 px-4 mb-2 text-white d-inline-block rounded"><span class="h5">3:2</span></div>
-                </div>
-              </div>
-
-              <div class="col-md-4 col-lg-4 text-center text-lg-right">
-                <div class="">
-                  <div class="d-block d-lg-flex align-items-center">
-                    <div class="image image-small ml-lg-3 mb-3 mb-lg-0 order-2">
-                      <img src="images/img_4_sq.jpg" alt="Image" class="img-fluid">
-                    </div>
-                    <div class="text order-1 w-100">
-                      <h3 class="h5 mb-0 text-black">Chiefs</h3>
-                      <span class="text-uppercase small country">London</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- END row -->
-
-          </div>
-
-        </div>
         <div class="row">
-          <div class="col-md-12 text-center">
-                <div class="site-block-27">
-                  <ul>
-                    <li id="btn_prev" class="active"><a id="btn_prev"href="javascript:prevPage()">&lt;</a></li>
-                    <!-- <li class="active"><span>1</span></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li> -->
-                    <li id="btn_next" ><a id="btn_next" href="javascript:nextPage()">&gt;</a></li>
-                  </ul>
+          <div class="col-md-12">
+
+            <h2 class="h6 text-uppercase text-black font-weight-bold mb-3">ÚLTIMAS PARTIDAS</h2>            
+            <div class="site-block-tab">
+              
+              <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Resultados</a>
+                </li>
+              </ul>
+              
+              <div class="tab-content" id="pills-tabContent">
+                
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">                
+                  
+                  <div class="row align-items-center">
+                    
+                    <div class="col-md-12"> 
+                      {% for match in all_matches %}                     
+                      <div class="row bg-white align-items-center ml-0 mr-0 py-4 match-entry">
+                        
+                        <div class="col-md-4 col-lg-4 mb-4 mb-lg-0">
+                          <div class="text-center text-lg-left">
+                            <div class="d-block d-lg-flex align-items-center">
+                              <div class="image image-small text-center mb-3 mb-lg-0 mr-lg-3">
+                                <img src="{{ match['home_team_logo'] }}" alt="Image" class="img-fluid">
+                              </div>
+                              <div class="text">
+                                <h3 class="h5 mb-0 text-black">{{ match["home_team"] }}</h3>
+                                <span class="text-uppercase small country">Mandante</span>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class="col-md-4 col-lg-4 text-center mb-4 mb-lg-0">
+                          <div class="d-inline-block">
+                            <p class="mb-2"><small class="text-uppercase text-black font-weight-bold">{{ match["league"] }}</small></p>                  
+                            <div class="bg-black py-2 px-4 mb-2 text-white d-inline-block rounded"><span class="h5">{{ match["score"] }}</span></div>
+                            <p class="mb-2"><small class="text-uppercase text-black font-weight-bold">{{ match["stadium"] }}</small></p>                          
+                          </div>
+                        </div>
+
+                        <div class="col-md-4 col-lg-4 text-center text-lg-right">
+                          <div class="">
+                            <div class="d-block d-lg-flex align-items-center">
+                              <div class="image image-small ml-lg-3 mb-3 mb-lg-0 order-2">
+                                <img src="{{ match['away_team_logo'] }}" alt="Image" class="img-fluid">
+                              </div>
+                              <div class="text order-1 w-100">
+                                <h3 class="h5 mb-0 text-black">{{ match["away_team"] }}</h3>
+                                <span class="text-uppercase small country">Visitante</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {% endfor %}
+                      
+                      <!-- END row -->
+
+                    </div>
+                  </div>
                 </div>
+                             
               </div>
-              <span id="page"></span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

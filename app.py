@@ -1,7 +1,6 @@
 from flask import Flask, flash, render_template, request, redirect, url_for
 import config
 import requests
-import flaData
 import sqlite3
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import sessionmaker
@@ -70,22 +69,10 @@ class Match(db.Model):
     def __repr__(self):
         return f'<Match {self.id}>'
 
-from datetime import datetime
-def myFunc(e):
-  return e
 
-
-response_next = db.session.query(Match).filter(Match.status == "NS").group_by(Match.date).all() #db.session.query(Match).filter(Match.status == "NS").all()[::-1]
+## Db query
+response_next = db.session.query(Match).filter(Match.status == "NS").group_by(Match.date).all()
 response_last = db.session.query(Match).filter(Match.status == "FT").group_by(Match.date).all()[::-1]
-
-
-# for i in response_last:
-
-#    print(f"Last: {i.id} - Date: {i.date}\n")
-
-
-for item in response_next:
-   print(f"{item.home_team} x {item.away_team} - {item.date}\n")
 
 
 @app.route('/', methods = ["GET", "POST"])
@@ -93,9 +80,8 @@ def index():
 
    league_next = response_next[0].league
    next_match_date = response_next[0].date
-   #next_match_date = next_match_date.sort()
    next_match_time = response_next[0].time
-   match_next_datetime = f"{next_match_date} {next_match_time}".replace("-", "/" )   
+   match_next_datetime = f"{next_match_date} {next_match_time}".replace("-", "/" )
    home_team_next = response_next[0].home_team
    away_team_next = response_next[0].away_team
    home_team_logo_next = response_next[0].home_team_logo
@@ -103,6 +89,7 @@ def index():
 
    all_matches = response_last
    league_last = response_last[0].league
+
    match_date_last = response_last[0].date
    match_time_last = response_last[0].time
    score_home_last = response_last[0].score[0]
@@ -196,8 +183,34 @@ def gallery():
 
    return render_template('gallery.html', **locals())
 
+@app.route('/g', methods = ["GET", "POST"])
+def g():
+
+   return render_template('g.html', **locals())
+
+
 @app.route('/matches', methods = ["GET", "POST"])
 def matches():
+   league_next = response_next[0].league
+   next_match_date = response_next[0].date
+   next_match_time = response_next[0].time
+   match_next_datetime = f"{next_match_date} {next_match_time}".replace("-", "/" )
+   home_team_next = response_next[0].home_team
+   away_team_next = response_next[0].away_team
+   home_team_logo_next = response_next[0].home_team_logo
+   away_team_logo_next = response_next[0].away_team_logo
+
+   all_matches = response_last
+   league_last = response_last[0].league
+
+   match_date_last = response_last[0].date
+   match_time_last = response_last[0].time
+   score_home_last = response_last[0].score[0]
+   score_away_last = response_last[0].score[4]
+   home_team_last = response_last[0].home_team
+   away_team_last = response_last[0].away_team
+   home_team_logo_last = response_last[0].home_team_logo
+   away_team_logo_last = response_last[0].away_team_logo
 
    return render_template('matches.html', **locals())
 

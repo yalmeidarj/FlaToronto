@@ -126,5 +126,5 @@ def insert_match_to_db(func:list):
         insert_into_table("Match", values)
 
 
-# insert_match_to_db(fetch_matches(next="3"))
-# insert_match_to_db(fetch_matches(last="9"))
+insert_match_to_db(fetch_matches(next="3"))
+insert_match_to_db(fetch_matches(last="9"))

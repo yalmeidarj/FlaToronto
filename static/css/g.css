@@ -26,13 +26,8 @@
     background: #ddd;
 }
 
-.model img{
-    min-width: 4em;
-    max-width: 30%;
-}
-
 .lookbook-gallery .model {
-    margin: 10px;
+    margin: 0;
     position: relative;
 }
 
