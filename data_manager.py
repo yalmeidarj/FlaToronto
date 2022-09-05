@@ -39,17 +39,16 @@ class DataManager:
     def insert_into_table(self, table, match_info, cols=None, db=database ):
         '''Create database connection based on db param; db default with database variable
         Insert data to table in database.
-        match_info: String --> takes match values;
-        cols: Tuple --> takes the columns names of table. Default to None. If None, Match cols are needed    
+        match_info: Tuple with string ("items", "items") --> takes match values;
+        cols: String with tuple "(items, items)" --> takes the columns names of table. Default to None. If None, Match cols are needed    
         '''
         
         conn = self.create_connection(db)
 
         if cols != None:            
-            values_lenght = (len(str(cols).split(", ")) * "?")
-            # cols = (cols)
+            values_lenght = (len(str(cols).split(", ")) * "?,")[:-1]
             sql = f''' INSERT INTO {table}{cols}
-            VALUES({values_lenght.replace("?", "?,")[:-1]}) ''' 
+            VALUES({values_lenght}) ''' 
         else:
             sql = f''' INSERT INTO {table}( 
             id, date, time,
