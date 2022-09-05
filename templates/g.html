@@ -126,36 +126,14 @@
     </div>    
     <script src="static/js/main.js"></script>  
     <script>
-    const paginationNumbers = document.getElementById("pagination-numbers");
-    const paginatedList = document.getElementById("paginated-list");
-    const listItems = paginatedList.querySelectorAll("li");
-    const nextButton = document.getElementById("next-button");
-    const prevButton = document.getElementById("prev-button");
-
-    
-    const paginationLimit = 5;
-    const pageCount = Math.ceil(listItems.length / paginationLimit);
-    let currentPage;
-
-    const appendPageNumber = (index) => {
-    const pageNumber = document.createElement("button");
-    pageNumber.className = "pagination-number";
-    pageNumber.innerHTML = index;
-    pageNumber.setAttribute("page-index", index);
-    pageNumber.setAttribute("aria-label", "Page " + index);
-    
-    paginationNumbers.appendChild(pageNumber);
-    };
-    
-    const getPaginationNumbers = () => {
-    for (let i = 1; i <= pageCount; i++) {
-        appendPageNumber(i);
-    }
-    }; 
-    
-    window.addEventListener("load", () => {
-    getPaginationNumbers();
-    });
+    $('#demo').pagination({
+        dataSource: [1, 2, 3, 4, 5, 6, 7, ... , 195],
+        callback: function(data, pagination) {
+            // template method of yourself
+            var html = template(data);
+            dataContainer.html(html);
+        }
+    })
     
     </script> 
     </div>
