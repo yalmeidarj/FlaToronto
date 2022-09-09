@@ -148,3 +148,5 @@ class DataManager:
         self.insert_match_to_db(self.fetch_matches(next="3"))
         self.insert_match_to_db(self.fetch_matches(last="9"))
 
+a = DataManager()
+a.update_db()

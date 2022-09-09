@@ -21,7 +21,6 @@ import vidhdr
 
 
 data_manager = dm.DataManager()
-data_manager.update_db
 
 # data_manager.insert_into_table(table="user", match_info=(None, "User", "Irssy", "PErdda", "iuypedrsaa@gmail.com", "dkjfaldkjfalkdjf"), cols="(id, permissions, name, username, email, pwd)")
 
@@ -29,13 +28,14 @@ data_manager.update_db
 # def page_not_found(e):
 #   return render_template('404.html'), 404
 
-app = Flask(__name__)
-app.config.from_object(config.config['development'])
-
-
-app.config['SQLALCHEMY_DATABASE_URI'] =  "sqlite:///fla.db"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+def create_app():    
+    app = Flask(__name__)
+    app.config.from_object(config.config['development'])
+    app.config['SQLALCHEMY_DATABASE_URI'] =  "sqlite:///fla.db"
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    db = SQLAlchemy(app)
+    return app
+app = create_app()
 
 engine = create_engine("sqlite:///fla.db")
  
