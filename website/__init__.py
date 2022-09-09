@@ -240,10 +240,9 @@ def matches():
 
    return render_template('matches.html', **locals())
 
-@app.route('/team', methods = ["GET", "POST"])
-def team():
-
-   return render_template('team.html', **locals())
+@app.route('/products', methods = ["GET", "POST"])
+def products():
+   return render_template('products.html', **locals())
 
 @app.route('/contact', methods = ["GET", "POST"])
 def contact():
